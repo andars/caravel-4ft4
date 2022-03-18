@@ -1,12 +1,16 @@
-# Caravel User Project
+# Caravel 4ft4
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![UPRJ_CI](https://github.com/efabless/caravel_project_example/actions/workflows/user_project_ci.yml/badge.svg)](https://github.com/efabless/caravel_project_example/actions/workflows/user_project_ci.yml) [![Caravel Build](https://github.com/efabless/caravel_project_example/actions/workflows/caravel_build.yml/badge.svg)](https://github.com/efabless/caravel_project_example/actions/workflows/caravel_build.yml)
+4ft4 is a clone of the MCS-4 architecture (4004 CPU, 4001 ROM, 4002 RAM),
+with a wishbone backdoor interface to the "ROM" and the RAM that enables
+loading a program for execution and inspecting/modifying the RAM.
 
-| :exclamation: Important Note            |
-|-----------------------------------------|
+This is an integration of 4ft4 into the caravel harness, with the 4ft4 wishbone
+backdoor interface connected to the caravel management processor.
 
-## Please fill in your project documentation in this README.md file 
+### License information
 
-Refer to [README](docs/source/quickstart.rst) for a quick start of how to use caravel_user_project
+caravel_user_project and modifications: Apache 2.0. The original
+caravel_user_project that this is based on is
+https://github.com/efabless/caravel_user_project.
 
-Refer to [README](docs/source/index.rst) for this sample project documentation. 
+4ft4: BSD.
