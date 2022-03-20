@@ -14,27 +14,15 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-.SUFFIXES:
-.SILENT: clean all
+PWDD := $(shell pwd)
+BLOCKS := $(shell basename $(PWDD))
 
+# ---- Include Partitioned Makefiles ----
 
-PATTERNS = io_ports la_test1 la_test2 wb_port mprj_stimulus
-PATTERNS += 4ft4_fib
+CONFIG = caravel_user_project
 
-all:  ${PATTERNS}
-
-	for i in ${PATTERNS}; do \
-		( cd $$i && make -f Makefile $${i}.vcd &> verify.log && grep Monitor verify.log) ; \
-	done
-
-DV_PATTERNS = $(foreach dv, $(PATTERNS), verify-$(dv))
-$(DV_PATTERNS): verify-% : 
-	cd $* && make
-
-clean:  ${PATTERNS}
-	for i in ${PATTERNS}; do \
-		( cd $$i && \rm  -f *.elf *.hex *.bin *.vvp *.log *.vcd *.lst *.hexe ) ; \
-	done
-	rm -rf *.log
-	
-.PHONY: clean all
+include $(MCW_ROOT)/verilog/dv/make/env.makefile
+include $(MCW_ROOT)/verilog/dv/make/var.makefile
+CPUFLAGS += -O2
+include $(MCW_ROOT)/verilog/dv/make/cpu.makefile
+include $(MCW_ROOT)/verilog/dv/make/sim.makefile
