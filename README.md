@@ -13,4 +13,4 @@ caravel_user_project and modifications: Apache 2.0. The original
 caravel_user_project that this is based on is
 https://github.com/efabless/caravel_user_project.
 
-4ft4: BSD.
+4ft4: MIT.
