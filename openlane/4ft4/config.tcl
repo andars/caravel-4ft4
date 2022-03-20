@@ -5,7 +5,7 @@ set script_dir [file dirname [file normalize [info script]]]
 
 set ::env(DESIGN_NAME) top_4ft4
 
-set ::env(SYNTH_DEFINES) [list "NO_TRISTATE" "ROM_HEX_FILE=\"${script_dir}/../../verilog/rtl/4ft4_rom.hex\"" "ROM_CAPACITY=128"]
+set ::env(SYNTH_DEFINES) [list "NO_TRISTATE" "ROM_HEX_FILE=\"${script_dir}/../../verilog/rtl/4ft4_rom.hex\"" "ROM_CAPACITY=256"]
 
 set ::env(VERILOG_FILES) "\
 	$::env(CARAVEL_ROOT)/verilog/rtl/defines.v \
@@ -29,12 +29,14 @@ set ::env(CLOCK_PERIOD) "10"
 #set ::env(DIE_AREA) "0 0 900 900"
 
 set ::env(FP_SIZING) relative
-set ::env(FP_CORE_UTIL) 10
+set ::env(FP_CORE_UTIL) 25
 
 set ::env(FP_PIN_ORDER_CFG) $script_dir/pin_order.cfg
 
 set ::env(PL_BASIC_PLACEMENT) 0
-set ::env(PL_TARGET_DENSITY) 0.12
+set ::env(PL_TARGET_DENSITY) 0.27
+
+set ::env(PL_RESIZER_HOLD_SLACK_MARGIN) 1.0
 
 # Maximum layer used for routing is metal 4.
 # This is because this macro will be inserted in a top level (user_project_wrapper)
