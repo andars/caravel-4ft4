@@ -82,25 +82,25 @@ module user_project_wrapper #(
 /* User project is instantiated  here   */
 /*--------------------------------------*/
 
-user_proj_example mprj (
+top_4ft4 mprj(
 `ifdef USE_POWER_PINS
 	.vccd1(vccd1),	// User area 1 1.8V power
 	.vssd1(vssd1),	// User area 1 digital ground
 `endif
 
-    .wb_clk_i(wb_clk_i),
-    .wb_rst_i(wb_rst_i),
+    .wb_clock_i(wb_clk_i),
+    .wb_reset_i(wb_rst_i),
 
     // MGMT SoC Wishbone Slave
 
-    .wbs_cyc_i(wbs_cyc_i),
-    .wbs_stb_i(wbs_stb_i),
-    .wbs_we_i(wbs_we_i),
-    .wbs_sel_i(wbs_sel_i),
-    .wbs_adr_i(wbs_adr_i),
-    .wbs_dat_i(wbs_dat_i),
-    .wbs_ack_o(wbs_ack_o),
-    .wbs_dat_o(wbs_dat_o),
+    .wb_cyc_i(wbs_cyc_i),
+    .wb_strobe_i(wbs_stb_i),
+    .wb_we_i(wbs_we_i),
+    .wb_sel_i(wbs_sel_i),
+    .wb_addr_i(wbs_adr_i),
+    .wb_data_i(wbs_dat_i),
+    .wb_ack_o(wbs_ack_o),
+    .wb_data_o(wbs_dat_o),
 
     // Logic Analyzer
 
