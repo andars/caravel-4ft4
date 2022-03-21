@@ -50,16 +50,17 @@ module tb_4ft4_fib;
         $dumpfile("4ft4_fib.vcd");
         $dumpvars(0, tb_4ft4_fib);
 
+        `ifndef GL
         for (i = 0; i < 3; i++) begin
             $dumpvars(0, uut.mprj.mprj.sys.cpu.pc_stack.program_counters[i]);
         end
-
         for (i = 0; i < 16; i++) begin
             $dumpvars(0, uut.mprj.mprj.sys.cpu.datapath.registers[i]);
         end
+        `endif
 
         // Repeat cycles of 1000 clock edges as needed to complete testbench
-        repeat (40) begin
+        repeat (60) begin
             repeat (1000) @(posedge clock);
             $display("+1000 cycles");
             $fflush();

@@ -1,6 +1,5 @@
 # Caravel user project includes
 -v $(USER_PROJECT_VERILOG)/rtl/user_project_wrapper.v	     
--v $(USER_PROJECT_VERILOG)/rtl/user_proj_example.v
 -v $(USER_PROJECT_VERILOG)/rtl/4ft4_top.v
 -v $(USER_PROJECT_VERILOG)/../4ft4/rtl/wb_system.v
 -v $(USER_PROJECT_VERILOG)/../4ft4/rtl/cpu.v
@@ -14,4 +13,5 @@
 # https://github.com/steveicarus/iverilog/issues/187
 +define+ROM_FILE_BASE="../../rtl/4ft4_rom"
 +define+ROM_CAPACITY=256
++define+WITH_ROM_RESET
 +incdir+$(USER_PROJECT_VERILOG)/../4ft4/rtl
