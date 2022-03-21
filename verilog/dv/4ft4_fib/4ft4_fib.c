@@ -218,7 +218,24 @@ void main()
     reg_mprj_xfer = 1;
     while (reg_mprj_xfer == 1);
 
+
+    // LA0 as output for halt
+    reg_la0_oenb = reg_la0_iena = 0xffffffff;
+    // LA1 as output for reset
+    reg_la1_oenb = reg_la1_iena = 0xffffffff;
+
     reg_la2_oenb = reg_la2_iena = 0x00000000;    // [95:64]
+
+    reg_la0_data = 0x1;
+    reg_la1_data = 0x1;
+
+    for (int i = 0; i < 8; i++) {
+        reg_la1_data = 0x1;
+    }
+
+    reg_la1_data = 0x0;
+
+    // 4ft4 is still halted
 
     // Flag start of the test
     reg_mprj_datal = 0xAB600000;
@@ -245,6 +262,9 @@ void main()
         *(reg_mprj_wb_base + i) = 0x0;
     }
 
+    // unhalt 4ft4
+    reg_la0_data = 0x0;
+
     /*
     !expect ram 0 reg 0: 0 0 1 0 1 0 2 0 3 0 5 0 8 0 d 0
     !expect ram 0 reg 1: 5 1 2 2 7 3 9 5 0 9 9 e 9 7 2 6
@@ -254,14 +274,18 @@ void main()
     while ((*((volatile uint32_t *)(reg_mprj_wb_base_b + RAM_BASE + 0x7c))) != 0x6) {
         reg_mprj_datal = 0xAB610000;
     }
+    reg_mprj_datal = 0xAB620000;
 
     const uint8_t expectation[] = { 0, 0, 1, 0, 1, 0, 2, 0, 3, 0, 5, 0, 8, 0, 0xd, 0};
+    uint16_t sum = 0;
     for (int i = 0; i < 16; i++) {
         uint8_t v = (*((volatile uint32_t *)(reg_mprj_wb_base_b + RAM_BASE + 4 * i)));
         reg_mprj_datal = (((uint32_t)v) << 16);
-        if (v != expectation[i]) {
-            FAIL(0x100 + i);
-        }
+        sum += v;
+    }
+
+    if (sum != 33) {
+        FAIL(0x100);
     }
 
     reg_mprj_datal = 0x13370000;
