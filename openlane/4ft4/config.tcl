@@ -5,7 +5,10 @@ set script_dir [file dirname [file normalize [info script]]]
 
 set ::env(DESIGN_NAME) top_4ft4
 
-set ::env(SYNTH_DEFINES) [list "NO_TRISTATE" "ROM_FILE_BASE=\"${script_dir}/../../verilog/rtl/4ft4_rom\"" "ROM_CAPACITY=256"]
+set ::env(SYNTH_DEFINES) [list "NO_TRISTATE" \
+                               "ROM_FILE_BASE=\"${script_dir}/../../verilog/rtl/4ft4_rom\"" \
+                               "ROM_CAPACITY=256" \
+                               "WITH_ROM_RESET" ]
 
 set ::env(VERILOG_FILES) "\
 	$::env(CARAVEL_ROOT)/verilog/rtl/defines.v \
