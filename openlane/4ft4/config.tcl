@@ -39,7 +39,7 @@ set ::env(FP_PIN_ORDER_CFG) $script_dir/pin_order.cfg
 set ::env(PL_BASIC_PLACEMENT) 0
 set ::env(PL_TARGET_DENSITY) 0.27
 
-set ::env(PL_RESIZER_HOLD_SLACK_MARGIN) 1.0
+set ::env(PL_RESIZER_HOLD_SLACK_MARGIN) 0.9
 
 # Maximum layer used for routing is metal 4.
 # This is because this macro will be inserted in a top level (user_project_wrapper)
